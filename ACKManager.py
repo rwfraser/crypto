@@ -7,7 +7,7 @@ from ACKModels import ACKModel
 
 class ACKManager():
     '''
-    ACKManager checks status of CloudManager (online/offline) and responds to MYCHAUFFE.com ACK requests accordingly
+    ACKManager checks status of CloudManager (online/offline) and responds to MyCHAUFFE.com ACK requests accordingly
     '''
     def __init__(self):
         self.CloudManagerBool = True
@@ -21,9 +21,9 @@ class ACKManager():
         if self.CloudManagerBool:
             return True
         return False
-    
+
 ACK_fields = {
-    'ID': fields.String('Cloud Manager ACK v1.0'),    
+    'ID': fields.String('Cloud Manager ACK v1.0'),
     'creation_date': fields.DateTime,
     'CloudManagerBool':fields.Boolean(True)
     }
@@ -34,7 +34,7 @@ class ACK(Resource):
     '''
     Implements API call - GET for ACK
     '''
-    
+
     @marshal_with(ACK_fields)
     def get(self):
         return ACK_manager
@@ -45,5 +45,5 @@ CloudManagerACK = Api(app)
 CloudManagerACK.add_resource(ACK, '/CloudManagerACK/ACKUrl/')
 
 if __name__ == '__main__':
-    #app.run(debug=True)    
+    #app.run(debug=True)
     app.run(host='0.0.0.0', debug=True)
